@@ -1,0 +1,14 @@
+diff -ru p4c-lang-1.2.2.orig/p4c-1.2.2/control-plane/p4RuntimeSerializer.cpp p4c-lang-1.2.2/p4c-1.2.2/control-plane/p4RuntimeSerializer.cpp
+--- p4c-lang-1.2.2.orig/p4c-1.2.2/control-plane/p4RuntimeSerializer.cpp	2021-11-04 08:44:54.086234008 -0700
++++ p4c-lang-1.2.2/p4c-1.2.2/control-plane/p4RuntimeSerializer.cpp	2021-11-04 08:46:57.836344726 -0700
+@@ -148,7 +148,8 @@
+     options.add_whitespace = true;
+ 
+     std::string output;
+-    if (MessageToJsonString(message, &output, options) != Status::OK) {
++    //    if (MessageToJsonString(message, &output, options) != Status::OK) {
++    if (!MessageToJsonString(message, &output, options).ok()) {
+         ::error(ErrorType::ERR_IO,
+                 "Failed to serialize protobuf message to JSON");
+         return false;
+Only in p4c-lang-1.2.2/p4c-1.2.2/control-plane: p4RuntimeSerializer.cpp~
