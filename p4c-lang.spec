@@ -18,7 +18,7 @@ BuildRequires:  cmake
 BuildRequires:  flex
 BuildRequires:  gcc-c++ gmp-devel gtest-devel
 BuildRequires:  libbpf-devel libgc-devel
-BuildRequires:  protobuf-devel python3 python3-thrift
+BuildRequires:  protobuf-devel python3 python3-scapy python3-thrift p4-bmv2-devel
 
 Requires:       boost
 Requires:       protobuf python3
@@ -34,9 +34,7 @@ cp -r p4runtime-%{rt_version}/* p4c-%{version}/control-plane/p4runtime/
 %patch1 -p1
 
 %build
-%cmake -DCMAKE_INSTALL_PREFIX=/usr \
-       -DENABLE_BMV2=OFF \
-       -DENABLE_DOCS=ON \
+%cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} \
        -DENABLE_GTESTS=OFF \
        -DENABLE_PROTOBUF_STATIC=OFF \
        p4c-%{version}
